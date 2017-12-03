@@ -37,29 +37,11 @@ public class DoughnutTest extends Application {
         doughnutChart.setLegendVisible(true);
         doughnutChart.setLegendSide(Side.BOTTOM);
 
-        map.addListener(new MapChangeListener<Integer, ObservableList<Pair<CSSClassLabel, Double>>>() {
-            @Override
-            public void onChanged(Change<? extends Integer, ? extends ObservableList<Pair<CSSClassLabel, Double>>> change) {
-                if (change.wasAdded()) {
-                    System.out.println(change);
-                    change.getValueAdded().addListener(new ListChangeListener<Pair<CSSClassLabel, Double>>() {
-                        @Override
-                        public void onChanged(Change<? extends Pair<CSSClassLabel, Double>> c) {
-
-                        }
-                    });
-                } else if (change.wasRemoved()) {
-                    System.out.println(change);
-                }
-            }
-        });
-
-//        map.remove(1);
-//        map.get(2).add(new Pair<CSSClassLabel, Double>(CSSClassLabel.JUST_CLICK, 50D));
-
         Scene scene = new Scene(doughnutChart, 1200, 700);
 
         primaryStage.setScene(scene);
         primaryStage.show();
+
+
     }
 }

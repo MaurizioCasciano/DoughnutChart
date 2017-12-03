@@ -1,8 +1,7 @@
 package javafx.chart;
 
 import com.sun.javafx.charts.Legend;
-import javafx.collections.ObservableList;
-import javafx.collections.ObservableMap;
+import javafx.collections.*;
 import javafx.scene.chart.Chart;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.Circle;
@@ -10,14 +9,47 @@ import javafx.scene.shape.StrokeLineCap;
 import javafx.scene.shape.StrokeType;
 
 import java.util.Map;
+import java.util.TreeMap;
 
 public class DoughnutChart extends Chart {
     private Legend legend;
     private boolean legendItemsAdded = false;
     private static final double MIN_LEGEND_HEIGHT = 50;
 
+
+    private final MapChangeListener<Integer, ObservableList<Pair<CSSClassLabel, Double>>> mapChangeListener = new MapChangeListener<Integer, ObservableList<Pair<CSSClassLabel, Double>>>() {
+
+        public void onChanged(Change<? extends Integer, ? extends ObservableList<Pair<CSSClassLabel, Double>>> change) {
+            if (change.wasAdded()) {
+                System.out.println("Map entry added");
+            }
+
+            if (change.wasRemoved()) {
+                System.out.println("Map entry removed");
+            }
+        }
+    };
+
+    private final ListChangeListener<Pair<CSSClassLabel, Double>> listChangeListener = new ListChangeListener<Pair<CSSClassLabel, Double>>() {
+        @Override
+        public void onChanged(Change<? extends Pair<CSSClassLabel, Double>> change) {
+            if (change.wasAdded()) {
+                System.out.println("List item added");
+            }
+
+            if (change.wasRemoved()) {
+                System.out.println("List item removed");
+            }
+        }
+    };
+
+    public DoughnutChart() {
+        this(FXCollections.observableMap(new TreeMap<>()));
+    }
+
     public DoughnutChart(ObservableMap<Integer, ObservableList<Pair<CSSClassLabel, Double>>> data) {
         this.data = data;
+        this.data.addListener(this.mapChangeListener);
     }
 
     private double strokeWidth = 50;
