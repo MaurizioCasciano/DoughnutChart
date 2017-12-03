@@ -4,3 +4,5 @@
 DoughnutChart\.iml
 
 *.class
+
+target/
