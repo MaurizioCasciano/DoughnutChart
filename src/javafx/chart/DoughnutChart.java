@@ -2,6 +2,7 @@ package javafx.chart;
 
 import com.sun.javafx.charts.Legend;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.scene.chart.Chart;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.Circle;
@@ -15,7 +16,7 @@ public class DoughnutChart extends Chart {
     private boolean legendItemsAdded = false;
     private static final double MIN_LEGEND_HEIGHT = 50;
 
-    public DoughnutChart(Map<Integer, ObservableList<Pair<CSSClassLabel, Double>>> data) {
+    public DoughnutChart(ObservableMap<Integer, ObservableList<Pair<CSSClassLabel, Double>>> data) {
         this.data = data;
     }
 
@@ -126,7 +127,7 @@ public class DoughnutChart extends Chart {
         this.legendItemsAdded = true;
     }
 
-    private Map<Integer, ObservableList<Pair<CSSClassLabel, Double>>> data;
+    private ObservableMap<Integer, ObservableList<Pair<CSSClassLabel, Double>>> data;
 
     private static double percentageToAngle(double percentage) {
         //PERCENTAGE : 100 = ANGLE : 360

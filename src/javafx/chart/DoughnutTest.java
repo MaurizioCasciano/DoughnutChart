@@ -3,6 +3,7 @@ package javafx.chart;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.geometry.Side;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -33,7 +34,9 @@ public class DoughnutTest extends Application {
         data.put(1, ring1);
         data.put(2, ring2);
 
-        DoughnutChart doughnutChart = new DoughnutChart(data);
+        ObservableMap<Integer, ObservableList<Pair<CSSClassLabel, Double>>> map = FXCollections.observableMap(data);
+
+        DoughnutChart doughnutChart = new DoughnutChart(map);
         doughnutChart.setLegendVisible(true);
         doughnutChart.setLegendSide(Side.BOTTOM);
 
