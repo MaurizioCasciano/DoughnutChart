@@ -22,13 +22,13 @@ public class DoughnutChart extends Chart {
     private double strokeWidth = 50;
     private double startAngle = 90;
 
-    //    public double getStartAngle() {
-//        return this.startAngle;
-//    }
-//
-//    public void setStartAngle(double startAngle) {
-//        this.startAngle = startAngle;
-//    }
+    public double getStartAngle() {
+        return this.startAngle;
+    }
+
+    public void setStartAngle(double startAngle) {
+        this.startAngle = startAngle;
+    }
 
     @Override
     protected void layoutChartChildren(double top, double left, double contentWidth, double contentHeight) {
